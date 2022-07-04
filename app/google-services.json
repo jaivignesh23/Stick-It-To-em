@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "831059455685",
+    "project_id": "stickittoem-45f5d",
+    "storage_bucket": "stickittoem-45f5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831059455685:android:632402f67ba43c7b4b0aac",
+        "android_client_info": {
+          "package_name": "edu.neu.madcourse.stick_it_to_em"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831059455685-81guqhlcp3k7fgplqfcf6mgr60g60751.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWyAzbPf_RvkFUGutV4cadE5V5fj3Qtrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831059455685-81guqhlcp3k7fgplqfcf6mgr60g60751.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

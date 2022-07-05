@@ -1,9 +1,12 @@
 package edu.neu.madcourse.stick_it_to_em;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class FriendsList extends AppCompatActivity {
 
@@ -12,6 +15,10 @@ public class FriendsList extends AppCompatActivity {
     TextView name;
 
     TextView friendListHeading;
+
+//    Recycle View of the list
+    RecyclerView recyclerViewFriendsList;
+    List<FriendsListData> friendsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

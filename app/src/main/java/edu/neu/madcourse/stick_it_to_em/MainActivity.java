@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView loginText;
     Button signup;
+    Button message;
     String alreadyHaveAccount = "Already have an account?";
 
     @Override
@@ -25,6 +26,18 @@ public class MainActivity extends AppCompatActivity {
         signup = findViewById(R.id.sign_up);
         signup.setOnClickListener(v -> {
             openSignUpPage();
+        });
+
+        // TODO: Move this code later to friends list screen
+        message = findViewById(R.id.message);
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(MainActivity.this, MessageActivity.class);
+                intent.putExtra("senderID", "abc");
+                intent.putExtra("receiverID", "def");
+                startActivity(intent);
+            }
         });
 
         // set the login text

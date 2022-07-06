@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="edu.neu.madcourse.stick_it_to_em">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StickItToem"
         tools:targetApi="31">
+        <activity
+            android:name=".MessageActivity"
+            android:exported="false" />
         <activity
             android:name=".FriendsList"
             android:exported="false" />

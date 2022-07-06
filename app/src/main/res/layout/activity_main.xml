@@ -57,4 +57,18 @@
         android:textColor="@color/white"
         android:textSize="18sp"/>
 
+    <Button
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="226dp"
+        android:layout_marginEnd="145dp"
+        android:layout_marginBottom="57dp"
+        android:text="Message"
+        app:layout_constraintBottom_toTopOf="@+id/sign_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

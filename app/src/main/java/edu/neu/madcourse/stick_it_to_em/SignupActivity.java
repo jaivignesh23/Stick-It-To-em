@@ -1,15 +1,26 @@
 package edu.neu.madcourse.stick_it_to_em;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+
 public class SignupActivity extends AppCompatActivity {
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReferenceFromUrl("https://stickittoem-83164-default-rtdb.firebaseio.com/");
 
     Button cancelSignUp;
     Button registerUser;
@@ -33,7 +44,26 @@ public class SignupActivity extends AppCompatActivity {
         registerUser = findViewById(R.id.signupRegisterButton);
         registerUser.setOnClickListener(v -> {
             if (validateEmail() && validateUsername() && validateName()) {
-                openFriendsListActivity();
+
+                myRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.hasChild(username.getText().toString())) {
+                            Toast.makeText(SignupActivity.this, "Username already exists, please choose another one",Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            myRef.child("users").child(username.getText().toString()).child("userEmail").setValue(email.getText().toString());
+                            myRef.child("users").child(username.getText().toString()).child("userFullName").setValue(name.getText().toString());
+                            openFriendsListActivity();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
             //Toast.makeText(SignupActivity.this, "Registering this new user", Toast.LENGTH_SHORT).show();
         });

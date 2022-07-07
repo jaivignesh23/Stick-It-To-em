@@ -52,8 +52,13 @@ public class SignupActivity extends AppCompatActivity {
                             Toast.makeText(SignupActivity.this, "Username already exists, please choose another one",Toast.LENGTH_LONG).show();
                         }
                         else{
-                            myRef.child("users").child(username.getText().toString()).child("userEmail").setValue(email.getText().toString());
-                            myRef.child("users").child(username.getText().toString()).child("userFullName").setValue(name.getText().toString());
+                            myRef.child("users").child(username.getText().toString()).child("email").setValue(email.getText().toString());
+                            myRef.child("users").child(username.getText().toString()).child("full_name").setValue(name.getText().toString());
+                            myRef.child("users").child(username.getText().toString()).child("username").setValue(username.getText().toString());
+                            myRef.child("users").child(username.getText().toString()).child("sCount1").setValue(0);
+                            myRef.child("users").child(username.getText().toString()).child("sCount2").setValue(0);
+                            myRef.child("users").child(username.getText().toString()).child("sCount3").setValue(0);
+                            myRef.child("users").child(username.getText().toString()).child("sCount4").setValue(0);
                             openFriendsListActivity();
                         }
                     }

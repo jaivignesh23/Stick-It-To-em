@@ -10,7 +10,7 @@
         android:id="@+id/messageContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentEnd="false"
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/rounded_corner_sent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/messageContent"
         android:layout_alignEnd="@+id/messageContent"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentEnd="false"
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="0dp"
 

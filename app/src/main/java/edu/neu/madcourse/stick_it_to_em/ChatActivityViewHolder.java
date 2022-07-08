@@ -39,7 +39,7 @@ public class ChatActivityViewHolder extends RecyclerView.ViewHolder {
             paramsDate.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
 
             userMessage.setLayoutParams(paramsMsg);
-            userMessage.setBackgroundResource(R.drawable.rounded_corner_sent);
+//            userMessage.setBackgroundResource(R.drawable.rounded_corner_sent);
 
             userDate.setLayoutParams(paramsDate);
         }
@@ -53,14 +53,14 @@ public class ChatActivityViewHolder extends RecyclerView.ViewHolder {
             paramsDate.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 0);
 
             userMessage.setLayoutParams(paramsMsg);
-            userMessage.setBackgroundResource(R.drawable.rounded_corner_received);
+//            userMessage.setBackgroundResource(R.drawable.rounded_corner_received);
             userDate.setLayoutParams(paramsDate);
         }
 
+        // TODO: Get the sticker id from chatItem and set the image from resource.
 
         userDate.setText(chatItem.getUserDate());
         userMessage.setText(chatItem.getUserMsg());
-
 
 
     }

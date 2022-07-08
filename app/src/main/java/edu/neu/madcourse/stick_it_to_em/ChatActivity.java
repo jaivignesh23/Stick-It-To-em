@@ -50,11 +50,14 @@ public class ChatActivity extends AppCompatActivity {
 
         chatList = new ArrayList<>();
 
-        chatList.add(new ChatActivityData("hello brad", "07072022"));
-        chatList.add(new ChatActivityData("hello teddy", "07072022"));
-        chatList.add(new ChatActivityData("hello harry", "07082022"));
-        chatList.add(new ChatActivityData("welcome brad", "07072022"));
-        chatList.add(new ChatActivityData("hola brad", "07072022"));
+        this.getConversationHistory();
+
+        chatList.add(new ChatActivityData("hello brad", "07072022","Jai", "Jv",233,54));
+        chatList.add(new ChatActivityData("hello teddy", "07072022","Jai", "Jv",233,54));
+        chatList.add(new ChatActivityData("hello harry", "07082022","Jai", "Jv",233,54));
+        chatList.add(new ChatActivityData("welcome brad", "07072022","Jai", "Jv",233,54));
+        chatList.add(new ChatActivityData("hola brad", "07072022","Jai", "Jv",233,54
+        ));
 
         // Set the adapter to the list created
         recyclerViewChatList = findViewById(R.id.recyclerViewChatList);
@@ -91,5 +94,13 @@ public class ChatActivity extends AppCompatActivity {
 //            }
 //        });
 
+    }
+
+    private void getConversationHistory() {
+        // TODO: Connect to firebase to get the conversation history
+
+        // add the data to chatList
+
+        // TODO: Get the inserted message from the sticker add view to update here to the list.
     }
 }

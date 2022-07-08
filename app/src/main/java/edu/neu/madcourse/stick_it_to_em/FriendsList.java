@@ -136,8 +136,8 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
 
         Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra("recipientEmail", friendData.getFriendEmail());
-        intent.putExtra("recipientUserName", friendData.getFriendFullName());
-        intent.putExtra("recipientUserFullName", friendData.getFriendUserName());
+        intent.putExtra("recipientUserFullName", friendData.getFriendFullName());
+        intent.putExtra("recipientUserName", friendData.getFriendUserName());
         intent.putExtra("recipientUserS1Count", friendData.getFriendStickerCount1());
         intent.putExtra("recipientUserS2Count", friendData.getFriendStickerCount2());
         intent.putExtra("recipientUserS3Count", friendData.getFriendStickerCount3());

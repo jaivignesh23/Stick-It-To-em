@@ -40,7 +40,7 @@ public class ChatActivityData {
     }
 
     public Integer getConversationId() {
-        return getConversationId();
+        return conversationId;
     }
 
 }

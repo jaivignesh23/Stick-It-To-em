@@ -40,6 +40,7 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
     DatabaseReference myRefFireBase;
 
     String intentUsername;
+    String intentUserFullName;
 
 
     @Override
@@ -59,6 +60,7 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
             intentUsername = extras.getString("username");
             String intentEmail = extras.getString("email");
             boolean isFromRegister = extras.getBoolean("comingFromRegister");
+            intentUserFullName = extras.getString("user_full_name");
 
 //            if (isFromRegister) {
 //                name.setText("COMING FROM THE REGISTER PAGE!!!");
@@ -67,7 +69,7 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
 //            currentUsername.setText(intentUsername);
 //            currentEmail.setText(intentEmail);
 
-            friendListHeading.setText("Hello " + intentUsername);
+            friendListHeading.setText("Hello " + intentUserFullName);
 
 //            Create a new instance and preserve the state of the list.
             friendsList = new ArrayList<>();
@@ -80,21 +82,30 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
 
     private void getFriendsList() {
 
+        // Connect to the firebase.
         fireBasedatabase = FirebaseDatabase.getInstance();
         myRefFireBase = fireBasedatabase.getReferenceFromUrl("https://stickittoem-83164-default-rtdb.firebaseio.com/");
 
+        // Iterate the child - users
         myRefFireBase.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                // Iterate over all the users(key) in the child users in the db
                 for(DataSnapshot userValue : snapshot.getChildren()) {
 
+                    // Avoid adding the logged in user to the friends list
                     if(!userValue.getKey().equals(intentUsername)
                             && userValue.getValue() != null) {
 
-                        friendsList.add(new FriendsListData(1,
+                        friendsList.add(new FriendsListData(
+                                userValue.child("email").getValue().toString(),
                                 userValue.child("full_name").getValue().toString(),
-                                userValue.child("email").getValue().toString())
+                                userValue.child("username").getValue().toString(),
+                                Integer.valueOf(userValue.child("sCount1").getValue().toString()),
+                                Integer.valueOf(userValue.child("sCount2").getValue().toString()),
+                                Integer.valueOf(userValue.child("sCount3").getValue().toString()),
+                                Integer.valueOf(userValue.child("sCount4").getValue().toString()))
                         );
 
                     }
@@ -121,8 +132,6 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
 
     @Override
     public void onSelectFriendToSendMessage(FriendsListData friendData) {
-        Toast.makeText(this,friendData.getFriendId().toString()+ "\n"
-                + friendData.getFriendName()+"\n"
-                +friendData.getFriendEmailId(),Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Hellooo",Toast.LENGTH_LONG).show();
     }
 }

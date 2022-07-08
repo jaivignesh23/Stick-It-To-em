@@ -27,6 +27,9 @@ public class LoginActivity extends AppCompatActivity {
     EditText email;
     EditText username;
 
+    // local string variable to store the current logged-in user full name
+    private String loggedIn_User_Full_Name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         logUserIn = findViewById(R.id.logUserIn);
         email = findViewById(R.id.loginEmailInput);
         username = findViewById(R.id.loginUsernameInput);
+        loggedIn_User_Full_Name = "";
 
 
         cancel.setOnClickListener(v -> finish());
@@ -53,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         if(snapshot.hasChild(username.getText().toString())) {
+                            loggedIn_User_Full_Name = snapshot.child(username.getText().toString())
+                                    .child("full_name")
+                                    .getValue().toString();
                             openFriendsListActivity();
                         }
                         else{
@@ -113,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FriendsList.class);
         intent.putExtra("username", username.getText().toString());
         intent.putExtra("email", email.getText().toString());
+        intent.putExtra("user_full_name", loggedIn_User_Full_Name);
         intent.putExtra("comingFromRegister", false);
         username.setText("");
         email.setText("");

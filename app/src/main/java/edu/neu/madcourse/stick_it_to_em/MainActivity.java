@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     TextView loginText;
     Button signup;
     Button message, profile;
+    Button chat;
     String alreadyHaveAccount = "Already have an account?";
 
     @Override
@@ -42,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
         message.setOnClickListener(v -> {
             Intent intent  = new Intent(MainActivity.this, ProfileActivity.class);
             intent.putExtra("userID", "abc");
+            startActivity(intent);
+        });
+
+        // TODO: Move this code later to chat list screen
+        chat = findViewById(R.id.chat);
+        chat.setOnClickListener(v -> {
+            Intent intent  = new Intent(MainActivity.this, ChatActivity.class);
             startActivity(intent);
         });
 

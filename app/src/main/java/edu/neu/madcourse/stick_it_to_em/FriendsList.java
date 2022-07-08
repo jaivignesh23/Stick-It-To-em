@@ -1,5 +1,6 @@
 package edu.neu.madcourse.stick_it_to_em;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,8 +8,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +35,13 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
     RecyclerView recyclerViewFriendsList;
     List<FriendsListData> friendsList;
 
+//    Firebase initial setup
+    FirebaseDatabase fireBasedatabase;
+    DatabaseReference myRefFireBase;
+
+    String intentUsername;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +56,7 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String intentUsername = extras.getString("username");
+            intentUsername = extras.getString("username");
             String intentEmail = extras.getString("email");
             boolean isFromRegister = extras.getBoolean("comingFromRegister");
 
@@ -63,28 +80,43 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
 
     private void getFriendsList() {
 
+        fireBasedatabase = FirebaseDatabase.getInstance();
+        myRefFireBase = fireBasedatabase.getReferenceFromUrl("https://stickittoem-83164-default-rtdb.firebaseio.com/");
 
+        myRefFireBase.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-        friendsList.add(new FriendsListData(1,"Jai", "jai@gmail.com"));
-        friendsList.add(new FriendsListData(2,"Ayush", "ayush@gmail.com"));
-        friendsList.add(new FriendsListData(3,"Shreyas", "shreyas@gmail.com"));
-        friendsList.add(new FriendsListData(4,"Shrikanth", "ahri@gmail.com"));
+                for(DataSnapshot userValue : snapshot.getChildren()) {
 
-        friendsList.add(new FriendsListData(5,"Jai", "jai@gmail.com"));
-        friendsList.add(new FriendsListData(6,"Ayush", "ayush@gmail.com"));
-        friendsList.add(new FriendsListData(7,"Shreyas", "shreyas@gmail.com"));
-        friendsList.add(new FriendsListData(8,"Shrikanth", "ahri@gmail.com"));
+                    if(!userValue.getKey().equals(intentUsername)
+                            && userValue.getValue() != null) {
 
+                        friendsList.add(new FriendsListData(1,
+                                userValue.child("full_name").getValue().toString(),
+                                userValue.child("email").getValue().toString())
+                        );
 
-        this.setCurrentAdapter();
+                    }
+
+                }
+
+                // Set the adapter to the list created
+                recyclerViewFriendsList = findViewById(R.id.recyclerViewFriendsList);
+                recyclerViewFriendsList.setHasFixedSize(true);
+                recyclerViewFriendsList.setLayoutManager(new LinearLayoutManager(FriendsList.this));
+                recyclerViewFriendsList.setAdapter(new FriendsListAdapter(friendsList, FriendsList.this, FriendsList.this));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
-    private void setCurrentAdapter() {
-        recyclerViewFriendsList = findViewById(R.id.recyclerViewFriendsList);
-        recyclerViewFriendsList.setHasFixedSize(true);
-        recyclerViewFriendsList.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewFriendsList.setAdapter(new FriendsListAdapter(friendsList, this, this));
-    }
 
 
     @Override

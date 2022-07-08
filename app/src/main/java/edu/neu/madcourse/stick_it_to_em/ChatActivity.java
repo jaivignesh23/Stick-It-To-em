@@ -25,14 +25,14 @@ public class ChatActivity extends AppCompatActivity {
     EditText editText;
     TextView alignText;
     ListView listview;
-    //Button f_button;
-    FloatingActionButton f_button;
+    FloatingActionButton floatingButton;
     String[] ListElements = new String[] {
     };
 
     //    Recycle View of the list
     RecyclerView recyclerViewChatList;
     List<ChatActivityData> chatList;
+    ChatActivityAdapter adapter;
 
     ImageView selectedImage;
     int images[] = {R.mipmap.sticker1 , R.mipmap.sticker2, R.mipmap.sticker3, R.mipmap.sticker4, R.mipmap.sticker5};
@@ -62,9 +62,21 @@ public class ChatActivity extends AppCompatActivity {
         // Set the adapter to the list created
         recyclerViewChatList = findViewById(R.id.recyclerViewChatList);
         recyclerViewChatList.setHasFixedSize(true);
-        recyclerViewChatList.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewChatList.setAdapter(new ChatActivityAdapter(chatList, this));
+        recyclerViewChatList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
+        //recyclerViewChatList.setAdapter(new ChatActivityAdapter(chatList, this));
+        adapter = new ChatActivityAdapter(chatList, this);
+        recyclerViewChatList.setAdapter(adapter);
 
+        floatingButton = findViewById(R.id.btnSendMessage);
+
+        floatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //selectedImage.setImageResource(R.mipmap.sticker1);
+                chatList.add(0, new ChatActivityData("New message", "07082022","Jai", "Jv",233,54));
+                adapter.notifyDataSetChanged();
+            }
+        });
 
 //        editText = findViewById(R.id.txtMessageContent);
 //        editText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);

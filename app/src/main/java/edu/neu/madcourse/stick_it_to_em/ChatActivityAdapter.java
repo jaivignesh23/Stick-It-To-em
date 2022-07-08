@@ -16,10 +16,12 @@ public class ChatActivityAdapter extends RecyclerView.Adapter<ChatActivityViewHo
 
     private final List<ChatActivityData> chatList;
     private final Context context;
+    private final String username;
 
-    public ChatActivityAdapter(List<ChatActivityData> chatList, Context context) {
+    public ChatActivityAdapter(List<ChatActivityData> chatList, Context context, String username) {
         this.chatList = chatList;
         this.context = context;
+        this.username = username;
     }
 
 
@@ -44,7 +46,7 @@ public class ChatActivityAdapter extends RecyclerView.Adapter<ChatActivityViewHo
 //            holder.msgSentLayoutId.setVisibility(View.VISIBLE);
 //        }
 
-        holder.bindListData(chatList.get(position));
+        holder.bindListData(chatList.get(position), username);
     }
 
     @Override

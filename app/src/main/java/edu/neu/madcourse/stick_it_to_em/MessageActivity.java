@@ -69,7 +69,6 @@ public class MessageActivity extends AppCompatActivity {
         imageView4.setOnClickListener(
                 v -> sendDataToRTDB(4, senderID, receiverID)
         );
-
     }
 
     @SuppressLint("DefaultLocale")

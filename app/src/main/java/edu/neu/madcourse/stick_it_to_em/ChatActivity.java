@@ -1,38 +1,26 @@
-package edu.neu.madcourse.stick_it_to_em;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
-public class ChatActivity extends AppCompatActivity {
+{
 
     EditText editText;
     TextView alignText;
     ListView listview;
-    FloatingActionButton floatingButton;
+    //Button f_button;
+    FloatingActionButton f_button;
     String[] ListElements = new String[] {
     };
+
 
     //    Recycle View of the list
     RecyclerView recyclerViewChatList;
     List<ChatActivityData> chatList;
-    ChatActivityAdapter adapter;
+
+    FirebaseDatabase fireBasedatabase;
+    DatabaseReference myRefFireBase;
+
+    String recipientUserName;
+    String recipientFullName;
+    String recipientEmail;
+    String currentUserName;
+    String currentUserFullName;
 
     ImageView selectedImage;
     int images[] = {R.mipmap.sticker1 , R.mipmap.sticker2, R.mipmap.sticker3, R.mipmap.sticker4, R.mipmap.sticker5};
@@ -50,33 +38,29 @@ public class ChatActivity extends AppCompatActivity {
 
         chatList = new ArrayList<>();
 
+
+
+//        chatList.add(new ChatActivityData("hello brad", "07072022","Jai", "Jv",233,54));
+//        chatList.add(new ChatActivityData("hello teddy", "07072022","Jai", "Jv",233,54));
+//        chatList.add(new ChatActivityData("hello harry", "07082022","Jai", "Jv",233,54));
+//        chatList.add(new ChatActivityData("welcome brad", "07072022","Jai", "Jv",233,54));
+//        chatList.add(new ChatActivityData("hola brad", "07072022","Jai", "Jv",233,54
+//        ));
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            currentUserName = extras.getString("senderUserName");
+            currentUserFullName = extras.getString("senderUserFullName");
+
+            recipientUserName = extras.getString("recipientUserName");
+            recipientFullName = extras.getString("recipientUserFullName");
+        }
+
         this.getConversationHistory();
 
-        chatList.add(new ChatActivityData("hello brad", "07072022","Jai", "Jv",233,54));
-        chatList.add(new ChatActivityData("hello teddy", "07072022","Jai", "Jv",233,54));
-        chatList.add(new ChatActivityData("hello harry", "07082022","Jai", "Jv",233,54));
-        chatList.add(new ChatActivityData("welcome brad", "07072022","Jai", "Jv",233,54));
-        chatList.add(new ChatActivityData("hola brad", "07072022","Jai", "Jv",233,54
-        ));
-
         // Set the adapter to the list created
-        recyclerViewChatList = findViewById(R.id.recyclerViewChatList);
-        recyclerViewChatList.setHasFixedSize(true);
-        recyclerViewChatList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
-        //recyclerViewChatList.setAdapter(new ChatActivityAdapter(chatList, this));
-        adapter = new ChatActivityAdapter(chatList, this);
-        recyclerViewChatList.setAdapter(adapter);
 
-        floatingButton = findViewById(R.id.btnSendMessage);
 
-        floatingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //selectedImage.setImageResource(R.mipmap.sticker1);
-                chatList.add(0, new ChatActivityData("New message", "07082022","Jai", "Jv",233,54));
-                adapter.notifyDataSetChanged();
-            }
-        });
 
 //        editText = findViewById(R.id.txtMessageContent);
 //        editText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
@@ -112,6 +96,51 @@ public class ChatActivity extends AppCompatActivity {
         // TODO: Connect to firebase to get the conversation history
 
         // add the data to chatList
+        fireBasedatabase = FirebaseDatabase.getInstance();
+        myRefFireBase = fireBasedatabase.getReferenceFromUrl("https://stickittoem-83164-default-rtdb.firebaseio.com/");
+
+        myRefFireBase.child("conversations").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot currentConversation : snapshot.getChildren()) {
+                    if (currentConversation.getValue() != null) {
+                        if ( (currentConversation.child("senderID").getValue().toString().equals(currentUserName)
+                                && currentConversation.child("receiverID").getValue().toString().equals(recipientUserName))) {
+                            System.out.println("YUR");
+//                        String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+//                                .format(new Date(Integer.parseInt(currentConversation.child("timestamp").getValue().toString()) * 1000L));
+
+                            ChatActivityData chatActivityData = new ChatActivityData("HI!!",
+                                    "07072022", currentUserName, recipientUserName, Integer.parseInt(currentConversation.child("stickerID").getValue().toString()), 54
+                            );
+                            chatList.add(chatActivityData);
+
+                        }
+                        if ( (currentConversation.child("senderID").getValue().toString().equals(recipientUserName)
+                                && currentConversation.child("receiverID").getValue().toString().equals(currentUserName))) {
+                            System.out.println("YUR");
+//                        String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+//                                .format(new Date(Integer.parseInt(currentConversation.child("timestamp").getValue().toString()) * 1000L));
+
+                            ChatActivityData chatActivityData = new ChatActivityData("HI!!",
+                                    "07072022", recipientUserName, currentUserName, Integer.parseInt(currentConversation.child("stickerID").getValue().toString()), 54
+                            );
+                            chatList.add(chatActivityData);
+
+                        }
+                    }
+                }
+                recyclerViewChatList = findViewById(R.id.recyclerViewChatList);
+                recyclerViewChatList.setHasFixedSize(true);
+                recyclerViewChatList.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
+                recyclerViewChatList.setAdapter(new ChatActivityAdapter(chatList, ChatActivity.this, currentUserName));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // TODO: Get the inserted message from the sticker add view to update here to the list.
     }

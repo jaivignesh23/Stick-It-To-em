@@ -1,6 +1,8 @@
 package edu.neu.madcourse.stick_it_to_em;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +30,10 @@ public class ChatActivity extends AppCompatActivity {
     String[] ListElements = new String[] {
     };
 
+    //    Recycle View of the list
+    RecyclerView recyclerViewChatList;
+    List<ChatActivityData> chatList;
+
     ImageView selectedImage;
     int images[] = {R.mipmap.sticker1 , R.mipmap.sticker2, R.mipmap.sticker3, R.mipmap.sticker4, R.mipmap.sticker5};
 
@@ -42,33 +48,48 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        editText = findViewById(R.id.txtMessageContent);
-        editText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+        chatList = new ArrayList<>();
 
-        alignText = findViewById(R.id.align);
-        //alignText.setText("abcd");
-        alignText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+        chatList.add(new ChatActivityData("hello brad", "07072022"));
+        chatList.add(new ChatActivityData("hello teddy", "07072022"));
+        chatList.add(new ChatActivityData("hello harry", "07082022"));
+        chatList.add(new ChatActivityData("welcome brad", "07072022"));
+        chatList.add(new ChatActivityData("hola brad", "07072022"));
 
-        listview = (ListView) findViewById(R.id.messageListView);
-        f_button = findViewById(R.id.btnSendMessage);
+        // Set the adapter to the list created
+        recyclerViewChatList = findViewById(R.id.recyclerViewChatList);
+        recyclerViewChatList.setHasFixedSize(true);
+        recyclerViewChatList.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewChatList.setAdapter(new ChatActivityAdapter(chatList, this));
 
-        final List< String > ListElementsArrayList = new ArrayList< String >(Arrays.asList(ListElements));
-        //final List< ImageView > ListElementsArrayList = new ArrayList< ImageView>();
 
-        final ArrayAdapter< String > adapter = new ArrayAdapter < String >
-                (ChatActivity.this, android.R.layout.simple_list_item_1,
-                        ListElementsArrayList);
-
-        listview.setAdapter(adapter);
-
-        f_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //selectedImage.setImageResource(R.mipmap.sticker1);
-                ListElementsArrayList.add(editText.getText().toString());
-                adapter.notifyDataSetChanged();
-            }
-        });
+//        editText = findViewById(R.id.txtMessageContent);
+//        editText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+//
+//        alignText = findViewById(R.id.align);
+//        //alignText.setText("abcd");
+//        alignText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+//
+//        listview = (ListView) findViewById(R.id.messageListView);
+//        f_button = findViewById(R.id.btnSendMessage);
+//
+//        final List< String > ListElementsArrayList = new ArrayList< String >(Arrays.asList(ListElements));
+//        //final List< ImageView > ListElementsArrayList = new ArrayList< ImageView>();
+//
+//        final ArrayAdapter< String > adapter = new ArrayAdapter < String >
+//                (ChatActivity.this, android.R.layout.simple_list_item_1,
+//                        ListElementsArrayList);
+//
+//        listview.setAdapter(adapter);
+//
+//        f_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //selectedImage.setImageResource(R.mipmap.sticker1);
+//                ListElementsArrayList.add(editText.getText().toString());
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
 
     }
 }

@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/msgSentLayoutId"
     android:layout_width="match_parent"
-    android:layout_alignParentEnd="true"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true">
 
     <TextView
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="5dp"
         android:id="@+id/messageContent"
-        android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="150dp"
-        android:text="Message"
-        android:textSize="20dp"
-        android:padding="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/rounded_corner_sent"
-        android:textColor="#fff" />
+        android:minWidth="150dp"
+        android:padding="10dp"
+        android:text="Message"
+        android:textColor="#fff"
+        android:textSize="20dp" />
 
     <TextView
-        android:layout_marginHorizontal="5dp"
         android:id="@+id/messageDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/messageContent"
-        android:layout_alignParentEnd="true"
         android:layout_alignEnd="@+id/messageContent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="5dp"
         android:layout_marginTop="0dp"
 
         android:layout_marginBottom="10dp"

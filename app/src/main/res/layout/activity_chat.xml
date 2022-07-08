@@ -1,53 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatActivity">
+    tools:context=".FriendsList">
 
 
-    <ListView
-        android:id="@+id/messageListView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewChatList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/btnSendMessage"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll" />
-
-    <EditText
-        android:id="@+id/txtMessageContent"
-        android:layout_width="479dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="14dp"
-        android:layout_toLeftOf="@+id/btnSendMessage"
-        android:hint="Enter your message" />
-
-    <TextView
-        android:id="@+id/align"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Already have an account?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="18sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnSendMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
-        app:srcCompat="@drawable/ic_send_icon_foreground" />
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

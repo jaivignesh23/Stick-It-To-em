@@ -121,6 +121,7 @@ public class SignupActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FriendsList.class);
         intent.putExtra("username", username.getText().toString());
         intent.putExtra("email", email.getText().toString());
+        intent.putExtra("user_full_name", name.getText().toString());
         intent.putExtra("comingFromRegister", true);
         username.setText("");
         email.setText("");

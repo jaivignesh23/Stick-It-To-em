@@ -15,13 +15,11 @@ public class FriendsListViewHolder extends RecyclerView.ViewHolder {
     public FriendsListViewHolder(View FriendsListView) {
         super(FriendsListView);
         this.friendName = FriendsListView.findViewById(R.id.friendListName);
-//        this.friendEmail = linkView.findViewById(R.id.fri);
         this.friendsListLayout = FriendsListView.findViewById(R.id.friendsListCardLayoutMain);
     }
 
     public void bindListData(FriendsListData friendItem) {
-        friendName.setText(friendItem.getFriendName());
-//        friendEmail.setText(friendItem.getFriendEmailId());
+        friendName.setText(friendItem.getFriendFullName());
     }
 
 }

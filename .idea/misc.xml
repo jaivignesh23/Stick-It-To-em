@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_chat.xml" value="0.1125" />
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_friends_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_friends_list_card_view.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_login.xml" value="0.264" />
@@ -10,6 +11,8 @@
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_message.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_signup.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/message_received_layout.xml" value="0.1125" />
+        <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/message_sent_layout.xml" value="0.1125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37604166666666666" />
       </map>
     </option>

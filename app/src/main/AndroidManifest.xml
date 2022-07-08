@@ -22,6 +22,9 @@
             android:name=".MessageActivity"
             android:exported="false" />
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".FriendsList"
             android:exported="false" />
         <activity

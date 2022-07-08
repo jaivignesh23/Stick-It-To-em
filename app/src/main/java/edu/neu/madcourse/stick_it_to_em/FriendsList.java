@@ -132,6 +132,22 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
 
     @Override
     public void onSelectFriendToSendMessage(FriendsListData friendData) {
-        Toast.makeText(this,"Hellooo",Toast.LENGTH_LONG).show();
+
+        Toast.makeText(this,"Send msg to" + friendData.getFriendFullName()
+                ,Toast.LENGTH_LONG).show();
+//
+//        Intent intent = new Intent(this, FriendsList.class);
+//        intent.putExtra("recipientEmail", friendData.getFriendEmail());
+//        intent.putExtra("recipientUserName", friendData.getFriendFullName());
+//        intent.putExtra("recipientUserFullName", friendData.getFriendUserName());
+//        intent.putExtra("recipientUserS1Count", friendData.getFriendStickerCount1());
+//        intent.putExtra("recipientUserS2Count", friendData.getFriendStickerCount2());
+//        intent.putExtra("recipientUserS3Count", friendData.getFriendStickerCount3());
+//        intent.putExtra("recipientUserS4Count", friendData.getFriendStickerCount4());
+//
+//        intent.putExtra("senderUserName", intentUsername);
+//        intent.putExtra("senderUserFullName", intentUserFullName);
+//
+//        startActivity(intent);
     }
 }

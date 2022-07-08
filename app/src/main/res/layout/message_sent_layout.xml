@@ -6,32 +6,41 @@
     android:layout_height="wrap_content"
     android:layout_alignParentEnd="true">
 
-    <TextView
-        android:id="@+id/messageContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+<!--    <TextView-->
+<!--        android:id="@+id/messageContent"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="false"-->
+<!--        android:layout_marginHorizontal="5dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:background="@drawable/rounded_corner_sent"-->
+<!--        android:minWidth="150dp"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="Message"-->
+<!--        android:textColor="#fff"-->
+<!--        android:textSize="20dp" />-->
+    
+    <ImageView
+        android:id="@+id/STICKER_IMAGE"
+        android:layout_height="200dp"
         android:layout_alignParentEnd="false"
         android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/rounded_corner_sent"
-        android:minWidth="150dp"
-        android:padding="10dp"
-        android:text="Message"
-        android:textColor="#fff"
-        android:textSize="20dp" />
+        android:src="@mipmap/sticker1"
+        android:layout_width="200dp"/>
 
-    <TextView
-        android:id="@+id/messageDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/messageContent"
-        android:layout_alignEnd="@+id/messageContent"
-        android:layout_alignParentEnd="false"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="0dp"
 
-        android:layout_marginBottom="10dp"
-        android:text="Date"
-        android:textColor="#424242"
-        android:textSize="14dp" />
+<!--    <TextView-->
+<!--        android:id="@+id/messageDate"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/messageContent"-->
+<!--        android:layout_alignEnd="@+id/messageContent"-->
+<!--        android:layout_alignParentEnd="false"-->
+<!--        android:layout_marginHorizontal="5dp"-->
+<!--        android:layout_marginTop="0dp"-->
+
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:text=""-->
+<!--        android:textColor="#424242"-->
+<!--        android:textSize="14dp" />-->
 </RelativeLayout>

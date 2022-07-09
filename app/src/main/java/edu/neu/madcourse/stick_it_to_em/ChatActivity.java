@@ -56,6 +56,7 @@ public class ChatActivity extends AppCompatActivity {
     String currentUserName;
     String currentUserFullName;
 
+    ChatActivityAdapter chatActivityAdapter;
     ImageView selectedImage;
     int images[] = {R.mipmap.sticker1 , R.mipmap.sticker2, R.mipmap.sticker3, R.mipmap.sticker4, R.mipmap.sticker5};
 
@@ -89,58 +90,19 @@ public class ChatActivity extends AppCompatActivity {
             intent.putExtra("senderID", currentUserName);
             intent.putExtra("receiverID", recipientUserName);
             startActivity(intent);
+            finish();
         });
-
-//        chatList.add(new ChatActivityData("hello brad", "07072022","Jai", "Jv",233,54));
-//        chatList.add(new ChatActivityData("hello teddy", "07072022","Jai", "Jv",233,54));
-//        chatList.add(new ChatActivityData("hello harry", "07082022","Jai", "Jv",233,54));
-//        chatList.add(new ChatActivityData("welcome brad", "07072022","Jai", "Jv",233,54));
-//        chatList.add(new ChatActivityData("hola brad", "07072022","Jai", "Jv",233,54
-//        ));
-
-
-        // Set the adapter to the list created
-
-
-
-//        editText = findViewById(R.id.txtMessageContent);
-//        editText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-//
-//        alignText = findViewById(R.id.align);
-//        //alignText.setText("abcd");
-//        alignText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-//
-//        listview = (ListView) findViewById(R.id.messageListView);
-//        f_button = findViewById(R.id.btnSendMessage);
-//
-//        final List< String > ListElementsArrayList = new ArrayList< String >(Arrays.asList(ListElements));
-//        //final List< ImageView > ListElementsArrayList = new ArrayList< ImageView>();
-//
-//        final ArrayAdapter< String > adapter = new ArrayAdapter < String >
-//                (ChatActivity.this, android.R.layout.simple_list_item_1,
-//                        ListElementsArrayList);
-//
-//        listview.setAdapter(adapter);
-//
-//        f_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //selectedImage.setImageResource(R.mipmap.sticker1);
-//                ListElementsArrayList.add(editText.getText().toString());
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-
     }
 
-    @Override
-    protected void onResume() {
-        //super.onStart();
-        super.onResume();
-        //chatList.clear();
-        this.getConversationHistory();
-
-    }
+//    @Override
+//    protected void onResume() {
+//        //super.onStart();
+//        super.onResume();
+//        //chatList.clear();
+//        //recyclerViewChatList.getAdapter().notifyDataSetChanged();
+//        this.getConversationHistory();
+//
+//    }
 
     private void getConversationHistory() {
         // TODO: Connect to firebase to get the conversation history
@@ -200,10 +162,5 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
-        chatList.clear();
-
-        finish();
-
     }
 }

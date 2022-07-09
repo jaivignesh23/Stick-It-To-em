@@ -61,7 +61,7 @@ public class MessageActivity extends AppCompatActivity {
         imageView1.setOnClickListener(
                 v -> {
                     sendDataToRTDB(1, senderID, receiverID);
-                    //openChatActivity();
+                    openChatActivity();
                     finish();
                 }
         );
@@ -69,7 +69,7 @@ public class MessageActivity extends AppCompatActivity {
         imageView2.setOnClickListener(
                 v -> {
                     sendDataToRTDB(2, senderID, receiverID);
-                    //openChatActivity();
+                    openChatActivity();
                     finish();
                 }
         );
@@ -77,7 +77,7 @@ public class MessageActivity extends AppCompatActivity {
         imageView3.setOnClickListener(
                 v -> {
                     sendDataToRTDB(3, senderID, receiverID);
-                    //openChatActivity();
+                    openChatActivity();
                     finish();
                 }
         );
@@ -85,7 +85,7 @@ public class MessageActivity extends AppCompatActivity {
         imageView4.setOnClickListener(
                 v -> {
                     sendDataToRTDB(4, senderID, receiverID);
-                    //openChatActivity();
+                    openChatActivity();
                     finish();
                 }
         );

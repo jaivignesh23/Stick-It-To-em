@@ -2,13 +2,16 @@ package edu.neu.madcourse.stick_it_to_em;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +44,24 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
 
     String intentUsername;
 
+    Toolbar myChildToolbar =
+            (Toolbar) findViewById(R.id.action_profile);
+    setSupportActionBar(myChildToolbar);
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_profile) {
+            // User chose the "Profile" action
+            Intent intent = new Intent(FriendsList.this, ProfileActivity.class);
+            intent.putExtra("userID", "abc");
+            startActivity(intent);
+            return true;
+        }
+        // If we got here, the user's action was not recognized.
+        // Invoke the superclass to handle it.
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

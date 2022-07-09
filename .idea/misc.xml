@@ -3,14 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="../../../../.gradle/caches/transforms-3/c08d23bedf5da750312d6c94ff6af2f6/transformed/appcompat-1.4.2/res/drawable/abc_ic_ab_back_material.xml" value="0.1" />
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_friends_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_friends_list_card_view.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_message.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Jai Vignesh M/Desktop/9781118183489/9781118183489/AndroidSensorProgrammingSource/Stick-It-To-em/app/src/main/res/layout/activity_signup.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/activity_message.xml" value="0.18635711669921876" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.21131947835286458" />
+        <entry key="app/src/main/res/layout/app_bar.xml" value="0.4354166666666667" />
       </map>
     </option>
   </component>

@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // TODO: Move this code later to profile button list screen
-        message = findViewById(R.id.profile);
-        message.setOnClickListener(v -> {
-            Intent intent  = new Intent(MainActivity.this, ProfileActivity.class);
-            intent.putExtra("userID", "abc");
-            startActivity(intent);
-        });
+//        message = findViewById(R.id.profile);
+//        message.setOnClickListener(v -> {
+//            Intent intent  = new Intent(MainActivity.this, ProfileActivity.class);
+//            intent.putExtra("userID", "abc");
+//            startActivity(intent);
+//        });
 
         // set the login text
         loginText = findViewById(R.id.log_in);

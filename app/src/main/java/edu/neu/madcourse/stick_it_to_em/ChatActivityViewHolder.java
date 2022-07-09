@@ -1,14 +1,10 @@
 package edu.neu.madcourse.stick_it_to_em;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ChatActivityViewHolder extends RecyclerView.ViewHolder {

@@ -7,11 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,15 +17,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
 public class MessageActivity extends AppCompatActivity {
 
     private String senderID, receiverID;
     FirebaseDatabase database;
     DatabaseReference dbReference;
     private int numChildren;
-    ArrayList<? extends Parcelable> chatList;
+    String currentImage;
+    Integer currentImageCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,11 +147,24 @@ public class MessageActivity extends AppCompatActivity {
         conversationsReference.push().setValue(new Conversation(
                 conversationCount + 1, senderID, receiverID, imageID));
 
+
         // Update Count of data
-        String abc = String.format("sCount%d", imageID);
-        Log.i("sCount", abc);
+        currentImage = String.format("sCount%d", imageID);
+        Log.i("sCount", currentImage);
         // TODO: get current number of stickers
-        dbReference.child("users").child(senderID).child(abc).setValue("100");
+        dbReference.child("users").child(senderID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                currentImageCount = Integer.parseInt(snapshot.child(currentImage).getValue().toString());
+                currentImageCount++;
+                dbReference.child("users").child(senderID).child(currentImage).setValue(currentImageCount.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         Log.i("Conversation", "Added Message");
 
     }

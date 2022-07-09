@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -70,15 +71,6 @@ public class ChatActivity extends AppCompatActivity {
 
         chatList = new ArrayList<>();
 
-
-
-//        chatList.add(new ChatActivityData("hello brad", "07072022","Jai", "Jv",233,54));
-//        chatList.add(new ChatActivityData("hello teddy", "07072022","Jai", "Jv",233,54));
-//        chatList.add(new ChatActivityData("hello harry", "07082022","Jai", "Jv",233,54));
-//        chatList.add(new ChatActivityData("welcome brad", "07072022","Jai", "Jv",233,54));
-//        chatList.add(new ChatActivityData("hola brad", "07072022","Jai", "Jv",233,54
-//        ));
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             currentUserName = extras.getString("senderUserName");
@@ -89,6 +81,23 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         this.getConversationHistory();
+
+        f_button = findViewById(R.id.btnSendMessage);
+        f_button.setOnClickListener(v -> {
+            Intent intent  = new Intent(ChatActivity.this, MessageActivity.class);
+            intent.putExtra("senderID", currentUserName);
+            intent.putExtra("receiverID", recipientUserName);
+            //intent.putA("chatList", chatList);
+            startActivity(intent);
+        });
+
+//        chatList.add(new ChatActivityData("hello brad", "07072022","Jai", "Jv",233,54));
+//        chatList.add(new ChatActivityData("hello teddy", "07072022","Jai", "Jv",233,54));
+//        chatList.add(new ChatActivityData("hello harry", "07082022","Jai", "Jv",233,54));
+//        chatList.add(new ChatActivityData("welcome brad", "07072022","Jai", "Jv",233,54));
+//        chatList.add(new ChatActivityData("hola brad", "07072022","Jai", "Jv",233,54
+//        ));
+
 
         // Set the adapter to the list created
 

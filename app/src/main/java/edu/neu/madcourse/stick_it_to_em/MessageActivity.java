@@ -55,19 +55,31 @@ public class MessageActivity extends AppCompatActivity {
         imageView4.setScaleY(1.7f);
 
         imageView1.setOnClickListener(
-                v -> sendDataToRTDB(1, senderID, receiverID)
+                v -> {
+                    sendDataToRTDB(1, senderID, receiverID);
+                    finish();
+                }
         );
 
         imageView2.setOnClickListener(
-                v -> sendDataToRTDB(2, senderID, receiverID)
+                v -> {
+                    sendDataToRTDB(2, senderID, receiverID);
+                    finish();
+                }
         );
 
         imageView3.setOnClickListener(
-                v -> sendDataToRTDB(3, senderID, receiverID)
+                v -> {
+                    sendDataToRTDB(3, senderID, receiverID);
+                    finish();
+                }
         );
 
         imageView4.setOnClickListener(
-                v -> sendDataToRTDB(4, senderID, receiverID)
+                v -> {
+                    sendDataToRTDB(4, senderID, receiverID);
+                    finish();
+                }
         );
     }
 
@@ -123,6 +135,5 @@ public class MessageActivity extends AppCompatActivity {
         dbReference.child("users").child(senderID).child(abc).setValue("100");
         Log.i("Conversation", "Added Message");
 
-        // TODO: Send the user back to ConversationScreen
     }
 }

@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     TextView loginText;
     Button signup;
     Button message, profile;
-    Button chat;
     String alreadyHaveAccount = "Already have an account?";
 
     @Override
@@ -29,27 +28,11 @@ public class MainActivity extends AppCompatActivity {
             openSignUpPage();
         });
 
-        // TODO: Move this code later to friends list screen
-        message = findViewById(R.id.message);
-        message.setOnClickListener(v -> {
-            Intent intent  = new Intent(MainActivity.this, MessageActivity.class);
-            intent.putExtra("senderID", "abc");
-            intent.putExtra("receiverID", "def");
-            startActivity(intent);
-        });
-
         // TODO: Move this code later to profile button list screen
         message = findViewById(R.id.profile);
         message.setOnClickListener(v -> {
             Intent intent  = new Intent(MainActivity.this, ProfileActivity.class);
             intent.putExtra("userID", "abc");
-            startActivity(intent);
-        });
-
-        // TODO: Move this code later to chat list screen
-        chat = findViewById(R.id.chat);
-        chat.setOnClickListener(v -> {
-            Intent intent  = new Intent(MainActivity.this, ChatActivity.class);
             startActivity(intent);
         });
 

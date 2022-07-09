@@ -7,11 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -24,13 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -58,7 +48,7 @@ public class ChatActivity extends AppCompatActivity {
 
     ChatActivityAdapter chatActivityAdapter;
     ImageView selectedImage;
-    int images[] = {R.mipmap.sticker1 , R.mipmap.sticker2, R.mipmap.sticker3, R.mipmap.sticker4, R.mipmap.sticker5};
+    int images[] = {R.mipmap.sticker2, R.mipmap.sticker1, R.mipmap.sticker3, R.mipmap.sticker4, R.mipmap.sticker5};
 
     static class ViewHolder {
         ImageView Image;
@@ -146,6 +136,7 @@ public class ChatActivity extends AppCompatActivity {
                 recyclerViewChatList.setHasFixedSize(true);
                 recyclerViewChatList.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
                 recyclerViewChatList.setAdapter(new ChatActivityAdapter(chatList, ChatActivity.this, currentUserName));
+                recyclerViewChatList.scrollToPosition(chatList.size() - 1);
             }
 
             @Override

@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +44,7 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
     String intentUsername;
     String intentUserFullName;
 
+    Button profileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
 //        name = findViewById(R.id.fromRegisterPage);
 //
         friendListHeading = findViewById(R.id.friendListHeading);
+        profileButton = findViewById(R.id.profileButton);
 
 
         Bundle extras = getIntent().getExtras();
@@ -78,6 +82,15 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
             this.getFriendsList();
 
         }
+
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(FriendsList.this, ProfileActivity.class);
+                intent.putExtra("userID", intentUsername);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getFriendsList() {

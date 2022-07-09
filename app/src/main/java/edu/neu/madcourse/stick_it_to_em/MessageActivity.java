@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -17,13 +19,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class MessageActivity extends AppCompatActivity {
 
     private String senderID, receiverID;
     FirebaseDatabase database;
     DatabaseReference dbReference;
     private int numChildren;
-
+    ArrayList<? extends Parcelable> chatList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +61,7 @@ public class MessageActivity extends AppCompatActivity {
         imageView1.setOnClickListener(
                 v -> {
                     sendDataToRTDB(1, senderID, receiverID);
+                    //openChatActivity();
                     finish();
                 }
         );
@@ -64,6 +69,7 @@ public class MessageActivity extends AppCompatActivity {
         imageView2.setOnClickListener(
                 v -> {
                     sendDataToRTDB(2, senderID, receiverID);
+                    //openChatActivity();
                     finish();
                 }
         );
@@ -71,6 +77,7 @@ public class MessageActivity extends AppCompatActivity {
         imageView3.setOnClickListener(
                 v -> {
                     sendDataToRTDB(3, senderID, receiverID);
+                    //openChatActivity();
                     finish();
                 }
         );
@@ -78,9 +85,23 @@ public class MessageActivity extends AppCompatActivity {
         imageView4.setOnClickListener(
                 v -> {
                     sendDataToRTDB(4, senderID, receiverID);
+                    //openChatActivity();
                     finish();
                 }
         );
+    }
+
+    public void openChatActivity() {
+
+
+        Intent intent = new Intent(this, ChatActivity.class);
+
+        //intent.putExtra("recipientUserFullName", chatActivityData.getFriendFullName());
+        intent.putExtra("recipientUserName", receiverID);
+        intent.putExtra("senderUserName", senderID);
+
+
+        startActivity(intent);
     }
 
     @SuppressLint("DefaultLocale")
@@ -136,4 +157,6 @@ public class MessageActivity extends AppCompatActivity {
         Log.i("Conversation", "Added Message");
 
     }
+
+
 }

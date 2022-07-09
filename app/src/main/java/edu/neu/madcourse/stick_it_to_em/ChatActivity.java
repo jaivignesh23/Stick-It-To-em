@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -74,10 +75,10 @@ public class ChatActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             currentUserName = extras.getString("senderUserName");
-            currentUserFullName = extras.getString("senderUserFullName");
+            //currentUserFullName = extras.getString("senderUserFullName");
 
             recipientUserName = extras.getString("recipientUserName");
-            recipientFullName = extras.getString("recipientUserFullName");
+            //recipientFullName = extras.getString("recipientUserFullName");
         }
 
         this.getConversationHistory();
@@ -87,7 +88,6 @@ public class ChatActivity extends AppCompatActivity {
             Intent intent  = new Intent(ChatActivity.this, MessageActivity.class);
             intent.putExtra("senderID", currentUserName);
             intent.putExtra("receiverID", recipientUserName);
-            //intent.putA("chatList", chatList);
             startActivity(intent);
         });
 
@@ -133,9 +133,18 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        //super.onStart();
+        super.onResume();
+        //chatList.clear();
+        this.getConversationHistory();
+
+    }
+
     private void getConversationHistory() {
         // TODO: Connect to firebase to get the conversation history
-
+        chatList.clear();
         // add the data to chatList
         fireBasedatabase = FirebaseDatabase.getInstance();
         myRefFireBase = fireBasedatabase.getReferenceFromUrl("https://stickittoem-83164-default-rtdb.firebaseio.com/");
@@ -183,6 +192,18 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+
+
         // TODO: Get the inserted message from the sticker add view to update here to the list.
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        chatList.clear();
+
+        finish();
+
     }
 }

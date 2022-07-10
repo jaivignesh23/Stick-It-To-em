@@ -32,6 +32,9 @@ public class ProfileActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             userID = extras.getString("userID");
+
+            // Check for notifications
+//            new RTDBNotificationListener().checkForNotifications(userID, this);
         }
         //userID = getIntent().getStringExtra("senderID");
 
@@ -64,17 +67,6 @@ public class ProfileActivity extends AppCompatActivity {
         sCount2 = findViewById(R.id.sCount2);
         sCount3 = findViewById(R.id.sCount3);
         sCount4 = findViewById(R.id.sCount4);
-
-//        sCount1.setText("100");
-//        sCount2.setText("100");
-//        sCount3.setText("100");
-//        sCount4.setText("100");
-
-        // TODO: Get Count from RTDB
-//         sCount1.setText((CharSequence) dbReference.child("user").child(userID).child("sCount1"));
-//         sCount2.setText((CharSequence) dbReference.child("user").child(userID).child("sCount2"));
-//         sCount3.setText((CharSequence) dbReference.child("user").child(userID).child("sCount3"));
-//         sCount4.setText((CharSequence) dbReference.child("user").child(userID).child("sCount4"));
 
         dbReference.child("users").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

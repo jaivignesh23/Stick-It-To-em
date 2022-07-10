@@ -144,9 +144,11 @@ public class MessageActivity extends AppCompatActivity {
         // Add entry in conversations key.
         int conversationCount = numChildren;
         DatabaseReference conversationsReference = dbReference.child("conversations");
+        DatabaseReference notificationsReference = dbReference.child("notifications");
         conversationsReference.push().setValue(new Conversation(
                 conversationCount + 1, senderID, receiverID, imageID));
-
+        notificationsReference.push().setValue(new Notification(
+                conversationCount + 1, senderID, receiverID, imageID));
 
         // Update Count of data
         currentImage = String.format("sCount%d", imageID);

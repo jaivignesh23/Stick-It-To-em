@@ -72,7 +72,7 @@ public class ChatActivity extends AppCompatActivity {
             //recipientFullName = extras.getString("recipientUserFullName");
 
             // Check for notifications
-//            new RTDBNotificationListener().checkForNotifications(currentUserName, this);
+            new RTDBNotificationListener().checkForNotifications(currentUserName, getApplicationContext());
         }
 
         this.getConversationHistory();

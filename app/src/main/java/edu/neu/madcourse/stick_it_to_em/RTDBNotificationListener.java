@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -18,7 +18,6 @@ import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,6 +54,7 @@ public class RTDBNotificationListener extends AppCompatActivity{
                         if (currentNotification.child("receiverID").getValue().toString().equals(currentUserID)) {
                             // Notify the user in the app
                             Log.i("Notify", "Current User");
+                            Log.i("Current Notification", currentNotification.toString());
                             String senderID = currentNotification.
                                     child("senderID").getValue().toString();
                             int stickerID = Integer.parseInt(currentNotification.
@@ -64,10 +64,11 @@ public class RTDBNotificationListener extends AppCompatActivity{
                             notifyUser(stickerID, senderID, receiverID, currentNotification.toString(), context);
 
                             // Delete the entry from the RealTime DB
-
+                            Log.i("Current Notification", currentNotification.toString());
+                            currentNotification.getRef().removeValue();
                         }
                     }
-                    notificationsReference.child("dummy").removeValue();
+
                 }
             }
 
@@ -77,35 +78,7 @@ public class RTDBNotificationListener extends AppCompatActivity{
             }
         });
 
-        /*notificationsReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.d("Notification", "Child added");
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.d("Notification", "Child added");
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
     }
-
-
 
     private void notifyUser(int stickerID, String senderName, String recipientUserName,
                             String notificationID, Context context) {
@@ -121,20 +94,37 @@ public class RTDBNotificationListener extends AppCompatActivity{
                 NotificationManager.IMPORTANCE_HIGH
         );
 
-        int sticker = R.mipmap.sticker4_round;
-
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(notificationChannel);
 
         // Create Notification
         Notification.Builder notificationBuilder = new Notification.Builder(context,
                 NOTIFICATION_CHANNEL_ID);
-        notificationBuilder.setContentText("Message from " + senderName);
+        notificationBuilder.setContentText(message);
         notificationBuilder.setContentTitle("New Message");
         notificationBuilder.setAutoCancel(true);
 
+        String imageName;
+        switch (stickerID) {
+            case 1:
+                imageName = "sticker1.jpeg";
+                break;
+            case 2:
+                imageName = "sticker2.png";
+                break;
+            case 3:
+                imageName = "sticker3.gif";
+                break;
+            case 4:
+                imageName = "sticker4.gif";
+                break;
+            default:
+                imageName = "sticker5.jpeg";
+                break;
+        }
+
         try {
-            InputStream ims = getAssets().open("sticker1.jpeg");
+            InputStream ims = context.getAssets().open(imageName);
             Bitmap bitmap = BitmapFactory.decodeStream(ims);
             notificationBuilder.setSmallIcon(Icon.createWithBitmap(bitmap));
             notificationBuilder.setLargeIcon(bitmap);
@@ -142,11 +132,17 @@ public class RTDBNotificationListener extends AppCompatActivity{
             e.printStackTrace();
         }
 
+        Log.i("SenderUserName", senderName);
+        Log.i("recipientUserName", recipientUserName);
+
         Intent intent = new Intent(context, ChatActivity.class);
-        intent.putExtra("senderUserName", senderName);
-        intent.putExtra("recipientUserName", recipientUserName);
+        // Sender in CharActivity context is recipientUserName in Notification context.
+        intent.putExtra("senderUserName", recipientUserName);
+        intent.putExtra("recipientUserName", senderName);
+
+        @SuppressLint("UnspecifiedImmutableFlag")
         PendingIntent pIntent = PendingIntent.getActivity(context, (int) System.currentTimeMillis(),
-                intent, 0);
+                intent, PendingIntent.FLAG_IMMUTABLE);
         notificationBuilder.setContentIntent(pIntent);
 
         Log.d("Notify", notificationBuilder.toString());

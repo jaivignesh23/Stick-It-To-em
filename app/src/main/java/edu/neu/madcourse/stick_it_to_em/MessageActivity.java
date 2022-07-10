@@ -97,8 +97,6 @@ public class MessageActivity extends AppCompatActivity {
         //intent.putExtra("recipientUserFullName", chatActivityData.getFriendFullName());
         intent.putExtra("recipientUserName", receiverID);
         intent.putExtra("senderUserName", senderID);
-
-
         startActivity(intent);
     }
 
@@ -168,7 +166,6 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
         Log.i("Conversation", "Added Message");
-
     }
 
 

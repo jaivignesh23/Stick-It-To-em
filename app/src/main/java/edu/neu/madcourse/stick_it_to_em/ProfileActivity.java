@@ -34,7 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
             userID = extras.getString("userID");
 
             // Check for notifications
-//            new RTDBNotificationListener().checkForNotifications(userID, this);
+            new RTDBNotificationListener().checkForNotifications(userID, getApplicationContext());
         }
         //userID = getIntent().getStringExtra("senderID");
 

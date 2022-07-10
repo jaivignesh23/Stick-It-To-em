@@ -24,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     Button cancel;
     Button logUserIn;
 
-    EditText email;
     EditText username;
 
     // local string variable to store the current logged-in user full name
@@ -37,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
 
         cancel = findViewById(R.id.cancelLogin);
         logUserIn = findViewById(R.id.logUserIn);
-        email = findViewById(R.id.loginEmailInput);
         username = findViewById(R.id.loginUsernameInput);
         loggedIn_User_Full_Name = "";
 
@@ -46,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         logUserIn.setOnClickListener(v -> {
             // Only if the user has entered a valid username and email do we
             // open up the friends list activity
-            if (validateEmail() && validateUsername()) {
+            if (/*validateEmail() &&*/ validateUsername()) {
 
                 // check w/ database and make sure that the user exists
 
@@ -96,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
      * Validate the email address passed in by the user
      * @return true if the user has a valid email, false otherwise
      */
-    private boolean validateEmail() {
+    /*private boolean validateEmail() {
 
         String emailString = email.getText().toString();
 
@@ -110,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
         return true;
-    }
+    }*/
 
     /**
      * Opens a new activity w/ a recycler view of all
@@ -119,17 +117,9 @@ public class LoginActivity extends AppCompatActivity {
     private void openFriendsListActivity() {
         Intent intent = new Intent(this, FriendsList.class);
         intent.putExtra("username", username.getText().toString());
-        intent.putExtra("email", email.getText().toString());
         intent.putExtra("user_full_name", loggedIn_User_Full_Name);
         intent.putExtra("comingFromRegister", false);
         username.setText("");
-        email.setText("");
         startActivity(intent);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
     }
 }

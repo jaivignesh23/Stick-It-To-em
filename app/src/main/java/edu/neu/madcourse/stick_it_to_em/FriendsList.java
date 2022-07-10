@@ -2,17 +2,26 @@ package edu.neu.madcourse.stick_it_to_em;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,8 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONObject;
-
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +60,10 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_list);
 
+
+
+
+
 //        currentUsername = findViewById(R.id.friendListusername);
 //        currentEmail = findViewById(R.id.friendListEmail);
 //        name = findViewById(R.id.fromRegisterPage);
@@ -65,6 +78,9 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
             String intentEmail = extras.getString("email");
             boolean isFromRegister = extras.getBoolean("comingFromRegister");
             intentUserFullName = extras.getString("user_full_name");
+
+            // Check for notifications
+            new RTDBNotificationListener().checkForNotifications(intentUsername, getApplicationContext());
 
 //            if (isFromRegister) {
 //                name.setText("COMING FROM THE REGISTER PAGE!!!");
@@ -160,5 +176,10 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
         intent.putExtra("senderUserFullName", intentUserFullName);
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

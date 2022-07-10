@@ -30,21 +30,20 @@
         android:id="@+id/profileImageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/sCount2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toEndOf="@+id/profileImageView2"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sCount1"
+        app:layout_constraintEnd_toStartOf="@+id/profileImageView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sticker_count"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/profileImageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/sCount1"
-        app:layout_constraintEnd_toStartOf="@+id/profileImageView1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sCount2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profileImageView1"
+        app:layout_constraintTop_toBottomOf="@+id/sticker_count"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
@@ -74,18 +73,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Count"
+        app:layout_constraintTop_toBottomOf="@id/profileImageView1"
         app:layout_constraintBottom_toTopOf="@+id/profileImageView3"
         app:layout_constraintEnd_toStartOf="@+id/sCount2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/sCount2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Count"
+
+        app:layout_constraintTop_toBottomOf="@id/profileImageView2"
         app:layout_constraintBottom_toTopOf="@+id/profileImageView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sCount1"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView1" />
+        app:layout_constraintStart_toEndOf="@+id/sCount1" />
+
+    <TextView
+        android:id="@+id/sticker_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Sticker Count"
+        android:textColor="#3949AB"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/profileImageView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

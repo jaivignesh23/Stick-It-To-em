@@ -36,7 +36,6 @@ public class ProfileActivity extends AppCompatActivity {
             // Check for notifications
             new RTDBNotificationListener().checkForNotifications(userID, getApplicationContext());
         }
-        //userID = getIntent().getStringExtra("senderID");
 
 
         imageView1 = findViewById(R.id.profileImageView1);

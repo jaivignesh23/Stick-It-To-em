@@ -3,15 +3,11 @@ package edu.neu.madcourse.stick_it_to_em;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.util.Log;
 
-import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -58,7 +54,7 @@ public class NotificationService extends FirebaseMessagingService{
         notificationBuilder.setAutoCancel(true);
 
         try {
-            InputStream ims = getAssets().open("sticker1.jpeg");
+            InputStream ims = getAssets().open("sticker2.jpeg");
             Bitmap bitmap = BitmapFactory.decodeStream(ims);
             notificationBuilder.setSmallIcon(Icon.createWithBitmap(bitmap));
         } catch (IOException e) {

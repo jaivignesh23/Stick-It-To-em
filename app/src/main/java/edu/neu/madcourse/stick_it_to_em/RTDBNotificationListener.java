@@ -107,10 +107,10 @@ public class RTDBNotificationListener extends AppCompatActivity{
         String imageName;
         switch (stickerID) {
             case 1:
-                imageName = "sticker1.jpeg";
+                imageName = "sticker2.jpeg";
                 break;
             case 2:
-                imageName = "sticker2.png";
+                imageName = "sticker1.png";
                 break;
             case 3:
                 imageName = "sticker3.gif";

@@ -5,15 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     // local string variable to store the current logged-in user full name
     private String loggedIn_User_Full_Name;
 
+    private String uniqueToken;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +46,27 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.loginEmailInput);
         username = findViewById(R.id.loginUsernameInput);
         loggedIn_User_Full_Name = "";
+        uniqueToken = "";
+
+        // Unique toke for a device
+
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(new OnCompleteListener<String>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<String> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.w("TAG", "Fetching FCM registration token failed", task.getException());
+//                            return;
+//                        }
+//
+//                        // Get new FCM registration token
+//                        String token = task.getResult();
+//
+//                        uniqueToken = token;
+
+//                    }
+//                });
+
 
 
         cancel.setOnClickListener(v -> finish());
@@ -60,11 +87,19 @@ public class LoginActivity extends AppCompatActivity {
                             loggedIn_User_Full_Name = snapshot.child(username.getText().toString())
                                     .child("full_name")
                                     .getValue().toString();
+
+                            //update the userToken
+
+                            myRef.child("users").child(username.getText().toString())
+                                    .child("email").setValue("xyz2@sdd.com");
+
                             openFriendsListActivity();
                         }
                         else{
                             Toast.makeText(LoginActivity.this, "User not registered",Toast.LENGTH_LONG).show();
                         }
+
+
                     }
 
                     @Override
@@ -79,6 +114,9 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+        // Push notification to the recipient user
+        PushNotificationFCM.sendNotifications(LoginActivity.this,"dukwkZp2QiKosgBVzhjWw4:APA91bHrD_e6pT6pI_yFrlEghTPnKNh28npTuypV_M9G3i0X7KlTI-asmXMzIY8mQQWUvVOEnR9R9FoGZmNzg_hzuASSGOdkKe03vNjF7jCzRYwKL_fbVOoBGe-5jjFpMPQAYhzUmydM",
+                "Welcome","hi beo!!!!");
     }
 
     /**

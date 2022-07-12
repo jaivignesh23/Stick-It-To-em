@@ -19,14 +19,14 @@
 <!--        android:text="Message"-->
 <!--        android:textColor="#fff"-->
 <!--        android:textSize="20dp" />-->
-    
+
     <ImageView
         android:id="@+id/STICKER_IMAGE"
+        android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_alignParentEnd="false"
         android:layout_marginHorizontal="5dp"
-        android:src="@mipmap/sticker2"
-        android:layout_width="200dp"/>
+        android:src="@mipmap/sticker2" />
 
 
 <!--    <TextView-->

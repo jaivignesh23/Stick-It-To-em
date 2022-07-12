@@ -89,7 +89,7 @@ public class FriendsList extends AppCompatActivity implements FriendsListSelectI
 //            currentUsername.setText(intentUsername);
 //            currentEmail.setText(intentEmail);
 
-            friendListHeading.setText("Hello " + intentUserFullName);
+            friendListHeading.setText("Hello " + intentUsername);
 
 //            Create a new instance and preserve the state of the list.
             friendsList = new ArrayList<>();

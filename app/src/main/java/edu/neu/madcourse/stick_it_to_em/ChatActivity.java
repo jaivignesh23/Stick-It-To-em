@@ -28,6 +28,7 @@ public class ChatActivity extends AppCompatActivity {
     TextView alignText;
     ListView listview;
     //Button f_button;
+    TextView emptyChat;
     FloatingActionButton f_button;
     String[] ListElements = new String[] {
     };
@@ -77,6 +78,8 @@ public class ChatActivity extends AppCompatActivity {
 
         this.getConversationHistory();
 
+        emptyChat = findViewById(R.id.emptyChat);
+
         f_button = findViewById(R.id.btnSendMessage);
         f_button.setOnClickListener(v -> {
             Intent intent  = new Intent(ChatActivity.this, MessageActivity.class);
@@ -124,6 +127,7 @@ public class ChatActivity extends AppCompatActivity {
                         if ( (currentConversation.child("senderID").getValue().toString().equals(recipientUserName)
                                 && currentConversation.child("receiverID").getValue().toString().equals(currentUserName))) {
                             System.out.println("YUR");
+
 //                        String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 //                                .format(new Date(Integer.parseInt(currentConversation.child("timestamp").getValue().toString()) * 1000L));
 
@@ -140,6 +144,12 @@ public class ChatActivity extends AppCompatActivity {
                 recyclerViewChatList.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
                 recyclerViewChatList.setAdapter(new ChatActivityAdapter(chatList, ChatActivity.this, currentUserName));
                 recyclerViewChatList.scrollToPosition(chatList.size() - 1);
+
+                if (chatList.size() == 0) {
+                    emptyChat.setText("Send a sticker to start!");
+                } else {
+                    emptyChat.setText("");
+                }
             }
 
             @Override
